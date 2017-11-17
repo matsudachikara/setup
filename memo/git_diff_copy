@@ -1,0 +1,45 @@
+git diff --name-only | while read -r f; do
+ echo "cp ./$f ~/projects/ffmpeg/$f"
+ eval "cp ./$f ~/projects/ffmpeg/$f"
+done
+
+git diff --name-only | while read -r f; do
+ echo "cp ~/projects/ffmpeg/$f /vagrant/project/ffmpeg/ffmpeg/$f"
+ eval "cp ~/projects/ffmpeg/$f /vagrant/project/ffmpeg/ffmpeg/$f"
+done
+
+git status | grep -e modified: -e deleted: -e "new file:" | while read -r f; do
+ if [[ ${f} =~ modified: ]]; then
+   set -- $f
+   echo "cp ./$3 ~/projects/ffmpeg/$3"
+   eval "cp ./$3 ~/projects/ffmpeg/$3"
+ elif [[ ${f} =~ new ]]; then
+   set -- $f
+   echo "cp ./$4 ~/projects/ffmpeg/$4"
+   eval "cp ./$4 ~/projects/ffmpeg/$4"
+ elif [[ ${f} =~ deleted: ]]; then
+   set -- $f
+   echo "rm ~/projects/ffmpeg/$3"
+   eval "rm ~/projects/ffmpeg/$3"
+ else
+   echo $f
+ fi
+done
+
+git status | grep -e modified: -e deleted: -e "new file:" | while read -r f; do
+ if [[ ${f} =~ modified: ]]; then
+   set -- $f
+   echo "cp ./$3 /vagrant/project/ffmpeg/ffmpeg/$3"
+   eval "cp ./$3 /vagrant/project/ffmpeg/ffmpeg/$3"
+ elif [[ ${f} =~ new ]]; then
+   set -- $f
+   echo "cp ./$4 /vagrant/project/ffmpeg/ffmpeg/$4"
+   eval "cp ./$4 /vagrant/project/ffmpeg/ffmpeg/$4"
+ elif [[ ${f} =~ deleted: ]]; then
+   set -- $f
+   echo "rm /vagrant/project/ffmpeg/ffmpeg/$3"
+   eval "rm /vagrant/project/ffmpeg/ffmpeg/$3"
+ else
+   echo $f
+ fi
+done
