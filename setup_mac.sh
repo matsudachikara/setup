@@ -17,6 +17,9 @@ brew cask install firefox
 brew cask install atom
 # dockerだけでdocker-composeもインストールされる
 brew cask install docker
+brew cask install docker-toolbox
+brew cask install kitematic
+
 
 brew install rbenv
 echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
