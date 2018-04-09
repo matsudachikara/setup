@@ -1,6 +1,10 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+# 設定用変数
+pc_user = "matsuda.chikara"
+vagrant_user = "matsuda"
+
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
@@ -69,14 +73,22 @@ Vagrant.configure("2") do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
+
+  # config.vm.provision :host_shell do |host_shell|
+  #   host_shell.inline = "scp -P 2222 -i .vagrant/machines/default/virtualbox/private_key -o 'StrictHostKeyChecking no' /Users/#{pc_user}/.ssh/id_rsa.pub vagrant@127.0.0.1:/home/vagrant/.ssh"
+  # end
+
+  config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
+
   config.vm.provision :shell do |s|
     s.path = "scripts/setup_user.sh"
   end
 
+  # 初回provisioning以降使える設定
   config.ssh.guest_port = 2222
-  config.ssh.username = "matsuda"
+  config.ssh.username = vagrant_user
   config.ssh.host = "127.0.0.1"
-  config.ssh.private_key_path = '/Users/matsuda.chikara\.ssh\id_rsa'
+  config.ssh.private_key_path = "/Users/#{pc_user}/.ssh/id_rsa"
   config.ssh.forward_agent = true
 
 end
