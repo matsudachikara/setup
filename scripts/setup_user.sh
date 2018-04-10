@@ -33,4 +33,11 @@ sudo chmod 700 ~/.ssh
 cd ~/.ssh/
 sudo cat /home/vagrant/.ssh/id_rsa.pub >> authorized_keys
 sudo rm /home/vagrant/.ssh/id_rsa.pub
-chmod 600 authorized_keys
+sudo chmod 600 authorized_keys
+
+if [! -e ~/.ssh/config ]
+  then
+  echo 'ServerAliveInterval 30' >> ~/.ssh/config
+  echo 'ServerAliveCountMax 3' >> ~/.ssh/config
+fi
+sudo chmod 600 ~/.ssh/config

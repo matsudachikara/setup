@@ -27,6 +27,7 @@ echo 'if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi' >> ~/.bash_pr
 brew install ruby-build
 brew install rbenv-gemset
 brew install rbenv-gem-rehash
+brew install git-lfs
 
 #rbenv 更新
 rm -rf ~/.rbenv/plugins/ruby-build
