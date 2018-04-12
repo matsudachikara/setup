@@ -51,6 +51,3 @@ if [ -e ~/.ssh/config ]; then
   echo 'ServerAliveCountMax 3' >> ~/.ssh/config
 fi
 sudo chmod 600 ~/.ssh/config
-
-# vagrantユーザーを削除、ホームフォルダは一応残す
-sudo userdel vagrant

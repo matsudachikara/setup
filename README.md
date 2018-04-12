@@ -8,5 +8,12 @@ vagrant box add #{box名} package.box
 
 * プロビジョンを手動で一部だけ実行
 
+id_rsa.pubをコピー
 vagrant provision --provision-with file
-vagrant provision --provision-with shell
+
+
+任意のユーザーを作成
+vagrant provision --provision-with setup_user
+
+vagrantユーザーを削除
+vagrant provision --provision-with delete_vagrant_user

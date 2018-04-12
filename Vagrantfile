@@ -78,11 +78,17 @@ Vagrant.configure("2") do |config|
   #   host_shell.inline = "scp -P 2222 -i .vagrant/machines/default/virtualbox/private_key -o 'StrictHostKeyChecking no' /Users/#{pc_user}/.ssh/id_rsa.pub vagrant@127.0.0.1:/home/vagrant/.ssh"
   # end
 
-  config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
+  config.vm.provision :file, source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
 
-  config.vm.provision :shell do |s|
+  config.vm.provision :shell, name: "setup_user" do |s|
     s.path = "./setup/scripts/setup_user.sh"
   end
+
+  # 初回起動後コメント外して実行してください
+  # vagrantユーザーを削除、ホームフォルダは一応残す
+  # config.vm.provision :shell, name: "delete_vagrant_user" do |s|
+  #   s.inline = "sudo userdel vagrant"
+  # end
 
   # 初回起動用設定
   config.ssh.private_key_path = "./setup/ssh/insecure_private_key"
