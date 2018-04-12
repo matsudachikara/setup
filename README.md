@@ -8,5 +8,5 @@ vagrant box add #{box名} package.box
 
 * プロビジョンを手動で一部だけ実行
 
-vagrant provision --provision-with #{実行したいプロビジョナー}
 vagrant provision --provision-with file
+vagrant provision --provision-with shell
