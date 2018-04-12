@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "amzn2-2017.12.0.20171212.2-x86_64"
+  config.vm.box = "matsudachikara/amazonlinux2"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -84,11 +84,14 @@ Vagrant.configure("2") do |config|
     s.path = "scripts/setup_user.sh"
   end
 
-  # 初回provisioning以降使える設定
-  config.ssh.guest_port = 2222
-  config.ssh.username = vagrant_user
-  config.ssh.host = "127.0.0.1"
-  config.ssh.private_key_path = "/Users/#{pc_user}/.ssh/id_rsa"
-  config.ssh.forward_agent = true
+  # 初回起動用設定
+  config.ssh.private_key_path = "./ssh/insecure_private_key"
+
+  # 初回起動（provisioning後）以降使える設定
+  # config.ssh.guest_port = 2222
+  # config.ssh.username = vagrant_user
+  # config.ssh.host = "127.0.0.1"
+  # config.ssh.private_key_path = "/Users/#{pc_user}/.ssh/id_rsa"
+  # config.ssh.forward_agent = true
 
 end

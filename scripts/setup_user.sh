@@ -17,7 +17,6 @@ expect \"passwd: all authentication tokens updated successfully.\"
 send -- \"exit\n\"
 "
 
-echo "${USERNAME}:${PASSWORD}" | sudo chpasswd
 echo "${USERNAME} ALL=(ALL:ALL)   ALL" | sudo EDITOR='tee -a' visudo
 echo "${USERNAME} ALL=(ALL:ALL)       NOPASSWD: ALL" | sudo EDITOR='tee -a'
 
