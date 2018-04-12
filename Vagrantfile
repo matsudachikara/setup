@@ -81,11 +81,11 @@ Vagrant.configure("2") do |config|
   config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
 
   config.vm.provision :shell do |s|
-    s.path = "scripts/setup_user.sh"
+    s.path = "./setup/scripts/setup_user.sh"
   end
 
   # 初回起動用設定
-  config.ssh.private_key_path = "./ssh/insecure_private_key"
+  config.ssh.private_key_path = "./setup/ssh/insecure_private_key"
 
   # 初回起動（provisioning後）以降使える設定
   # config.ssh.guest_port = 2222
