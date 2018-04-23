@@ -1,0 +1,12 @@
+ServerAliveInterval 30
+ServerAliveCountMax 3
+IdentityFile ~/.ssh/id_rsa
+ForwardAgent yes
+AddKeysToAgent yes
+UseKeychain yes
+
+Host github.com
+    HostName github.com
+    TCPKeepAlive yes
+    IdentitiesOnly yes
+    User git
