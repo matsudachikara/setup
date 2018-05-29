@@ -32,6 +32,10 @@
     vagrantユーザーを削除
     vagrant provision --provision-with delete_vagrant_user
     ```
+    ```
+    sambaを作成＆自動設定
+    vagrant provision --provision-with setup_samba
+    ```
 
 
 * その他シェルなどが適当に置いてあります

@@ -1,7 +1,12 @@
 #/bin/bash
 
-USERNAME=""
-PASSWORD=""
+# 手動設定
+# USERNAME=""
+# PASSWORD=""
+
+# シェルから渡す場合
+USERNAME=$1
+PASSWORD=$2
 
 # 事前にexpectをインストール
 sudo yum -y install expect

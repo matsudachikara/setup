@@ -4,6 +4,7 @@
 # 設定用変数
 pc_user = "matsuda.chikara"
 vagrant_user = "matsuda"
+vagrant_password = ""
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
@@ -84,7 +85,13 @@ Vagrant.configure("2") do |config|
   config.vm.provision :file, source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
 
   config.vm.provision :shell, name: "setup_user" do |s|
-    s.path = "./scripts/setup_user.sh"
+    s.path = "./setup/scripts/setup_user.sh"
+    s.args = [vagrant_user, vagrant_password]
+  end
+
+  config.vm.provision :shell, name: "setup_samba" do |s|
+    s.path = "./setup/scripts/setup_samba.sh"
+    s.args = [vagrant_user, vagrant_password]
   end
 
   # 初回起動後コメント外して実行してください
