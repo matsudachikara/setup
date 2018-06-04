@@ -1,7 +1,12 @@
 #/bin/bash
 
-USERNAME=""
-PASSWORD=""
+# 手動設定
+# USERNAME=""
+# PASSWORD=""
+
+# シェルから渡す場合
+USERNAME=$1
+PASSWORD=$2
 
 # 事前にexpectをインストール
 sudo yum -y install expect
@@ -39,7 +44,7 @@ fi
 sudo chmod 600 authorized_keys
 
 if [ -e /home/vagrant/.ssh/id_rsa.pub ]; then
-  sudo cat /home/vagrant/.ssh/id_rsa.pub >> authorized_keys
+  sudo cat /home/vagrant/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
   sudo rm /home/vagrant/.ssh/id_rsa.pub
 fi
 

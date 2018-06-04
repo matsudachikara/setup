@@ -4,6 +4,7 @@
 # 設定用変数
 pc_user = "matsuda.chikara"
 vagrant_user = "matsuda"
+vagrant_password = ""
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
@@ -49,7 +50,7 @@ Vagrant.configure("2") do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   # Mac用
-  config.vm.synced_folder "../../../projects/", "/projects", type: "nfs"
+  config.vm.synced_folder "../../../project/", "/project", type: "nfs"
   # それ以外用
   # config.vm.synced_folder "../../../projects/", "/projects"
 
@@ -86,6 +87,12 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :shell, name: "setup_user" do |s|
     s.path = "./setup/scripts/setup_user.sh"
+    s.args = [vagrant_user, vagrant_password]
+  end
+
+  config.vm.provision :shell, name: "setup_samba" do |s|
+    s.path = "./setup/scripts/setup_samba.sh"
+    s.args = [vagrant_user, vagrant_password]
   end
 
   # 初回起動後コメント外して実行してください
@@ -95,7 +102,7 @@ Vagrant.configure("2") do |config|
   # end
 
   # 初回起動用設定
-  config.ssh.private_key_path = "./setup/ssh/insecure_private_key"
+  config.ssh.private_key_path = "./ssh/insecure_private_key"
 
   # 初回起動（provisioning後）以降使える設定
   # config.ssh.guest_port = 2222
