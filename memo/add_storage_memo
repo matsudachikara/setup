@@ -1,0 +1,24 @@
+## vagrantでのディスク容量追加方法
+
+#### まず元のサイズを確認しておく
+- lsblkコマンドで物理ボリュームのサイズを確認
+- `df -BG`で論理ボリュームのサイズを確認
+
+#### vagrant
+- ホスト側でプラグインをインストール`vagrant plugin install vagrant-disksize`
+
+- Vagrantfileに設定を書く
+
+  ```
+  Vagrant.configure('2') do |config|
+    config.vm.box = 'ubuntu/xenial64'
+    config.disksize.size = '120GB' # 120GB に変更
+  end
+  ```
+- `vagrant up`
+
+#### メモ
+- vagrant upの時結構時間かかる
+- VirtualBox 以外のプロバイダでは動作しない
+- box イメージによっては上手く動作しなかったり、別途ゲストOS内でパーティション設定が必要になるかも知れない
+- ディスク容量は増やす方向にしか変更できない
