@@ -19,6 +19,7 @@ brew cask install atom
 brew cask install docker
 brew cask install docker-toolbox
 brew cask install kitematic
+brew cask install mysqlworkbench
 
 
 brew install rbenv
