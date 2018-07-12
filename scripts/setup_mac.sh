@@ -23,12 +23,20 @@ brew cask install mysqlworkbench
 
 
 brew install rbenv
-echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"c
 echo 'if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi' >> ~/.bash_profile
 brew install ruby-build
 brew install rbenv-gemset
 brew install rbenv-gem-rehash
 brew install git-lfs
+brew install git
+brew install bash-completion
+
+#terminalでgit branch表示＆補完
+echo 'source /usr/local/etc/bash_completion.d/git-prompt.sh' >> ~/.bash_profile
+echo 'source /usr/local/etc/bash_completion.d/git-completion.bash' >> ~/.bash_profile
+echo 'GIT_PS1_SHOWDIRTYSTATE=true' >> ~/.bash_profile
+echo 'export PS1="\h\[\033[00m\]:\W\[\033[31m\]$(__git_ps1 [%s])\[\033[00m\]\$ "' >> ~/.bash_profile
 
 # nodeインストール
 brew install nodebrew
